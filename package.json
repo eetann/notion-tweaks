@@ -1,0 +1,45 @@
+{
+  "name": "notion-tweaks",
+  "version": "1.0.0",
+  "description": "This is a Chrome extension for notion",
+  "private": true,
+  "scripts": {
+    "serve": "NODE_ENV=development webpack --config=webpack.dev.js --mode=development",
+    "build": "webpack --config webpack.prod.js"
+  },
+  "devDependencies": {
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "mini-css-extract-plugin": "^2.3.0",
+    "terser-webpack-plugin": "^5.2.4",
+    "webpack-merge": "^5.8.0",
+    "zip-webpack-plugin": "^4.0.1"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true,
+      "browser": true,
+      "webextensions": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/eetann/notion-tweaks.git"
+  },
+  "author": "eetann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eetann/notion-tweaks/issues"
+  },
+  "homepage": "https://github.com/eetann/notion-tweaks#readme"
+}

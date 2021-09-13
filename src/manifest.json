@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Notion Tweaks",
+  "version": "1.0.0",
+  "description": "For Notion",
+  "author": "eetann",
+  "content_scripts": [
+    {
+      "matches": ["https://www.notion.so/*"],
+      "css": ["chunk.css"],
+      "js": ["chunk.js", "content.js"]
+    }
+  ],
+  "background": {"service_worker": "background.js"}
+}
