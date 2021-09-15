@@ -21,9 +21,19 @@ module.exports = {
       },
     }
   },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, './src')
+    },
+    extensions: ['.js']
+  },
   module: {
     rules: [
-      ,
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
@@ -34,10 +44,11 @@ module.exports = {
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
     }),
-    new CopyPlugin([{
-      from: 'src/manifest.json',
-    },
-    ]),
+    new CopyPlugin({
+      patterns: [
+        {from: "src/manifest.json", to: "dest"},
+      ],
+    }),
     new MiniCssExtractPlugin(),
   ]
 }
