@@ -1,4 +1,4 @@
-const merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const common = require('./webpack.common.js');
 const ExtensionReloader = require('./extension-reloader.js');
 
@@ -17,7 +17,8 @@ module.exports = merge(common, {
     reasons: false,
     children: false,
     source: false,
-    publicPath: false
+    publicPath: false,
+    errorDetails: true,
   },
   plugins: [
     new ExtensionReloader(),
