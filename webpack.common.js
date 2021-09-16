@@ -53,7 +53,7 @@ module.exports = {
     }),
     new CopyPlugin({
       patterns: [
-        {from: "src/manifest.json", to: "dest"},
+        {from: "src/manifest.json"},
       ],
     }),
     new MiniCssExtractPlugin(),

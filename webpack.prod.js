@@ -9,7 +9,6 @@ module.exports = merge(common, {
   optimization: {
     minimizer: [
       new TerserPlugin({
-        sourceMap: false,
         terserOptions: {
           output: {
             ascii_only: false,
