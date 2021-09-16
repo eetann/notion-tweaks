@@ -45,32 +45,33 @@ class ExtensionReloader {
       console.log('reloaded!');
     })
 
-    // register file to reload with webpack entry
-    let entry = compiler.options.entry;
-    let content_reload = './content_reload.js';
-    if (entry.content) {
-      if (Array.isArray(entry.content)) {
-        entry.content.push(content_reload);
-      } else {
-        entry.content = [entry.content, content_reload];
+    compiler.hooks.entryOption.tap('ExtensionReloader', (_, entry) => {
+      // register file to reload with webpack entry
+      let content_reload = './content_reload.js';
+      if (entry.content) {
+        if (Array.isArray(entry.content.import)) {
+          entry.content.import.push(content_reload);
+        } else {
+          entry.content.import = [entry.content.import, content_reload];
+        }
       }
-    }
-    let options_reload = './options_reload.js';
-    if (entry.options) {
-      if (Array.isArray(entry.options)) {
-        entry.options.push(options_reload);
-      } else {
-        entry.options = [entry.options, options_reload];
+      let options_reload = './options_reload.js';
+      if (entry.options) {
+        if (Array.isArray(entry.options.import)) {
+          entry.options.import.push(options_reload);
+        } else {
+          entry.options.import = [entry.options.import, options_reload];
+        }
       }
-    }
-    let background_reload = './background_reload.js';
-    if (entry.background) {
-      if (Array.isArray(entry.background)) {
-        entry.background.push(background_reload);
-      } else {
-        entry.background = [entry.background, background_reload];
+      let background_reload = './background_reload.js';
+      if (entry.background) {
+        if (Array.isArray(entry.background.import)) {
+          entry.background.import.push(background_reload);
+        } else {
+          entry.background.import = [entry.background.import, background_reload];
+        }
       }
-    }
+    });
   };
 }
 module.exports = ExtensionReloader
