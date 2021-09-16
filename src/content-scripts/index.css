@@ -1,0 +1,16 @@
+@media (max-width: 850px) {
+  .notion-frame > .notion-scroller > div:not(.notion-page-content) > div,
+  .notion-page-content {
+      padding-left: 2.5em !important;
+      padding-right: 1em !important;
+  }
+
+  .notion-frame > .notion-scroller > div:not(.notion-page-content)[style*="padding"] {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+  }
+
+  div[data-block-id] {
+      max-width: unset !important;
+  }
+}
