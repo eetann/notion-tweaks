@@ -42,6 +42,7 @@ class ExtensionReloader {
           client.send('reload');
         }
       })
+      console.log(new Date().toLocaleString());
       console.log('reloaded!');
     })
 
