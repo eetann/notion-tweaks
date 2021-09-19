@@ -6,9 +6,9 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    content: "./src/content-scripts/main.js",
-    options: "./src/options/main.js",
-    background: "./src/background/main.js"
+    content: "./src/content-scripts/main.ts",
+    options: "./src/options/main.ts",
+    background: "./src/background/main.ts"
   },
   output: {
     path: path.resolve(__dirname, 'dist/'),
@@ -29,18 +29,7 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.m?js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              ['@babel/preset-env', {targets: "defaults"}]
-            ]
-          }
-        }
-      },
+      {test: /\.tsx?$/, loader: "ts-loader"},
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],

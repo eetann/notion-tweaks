@@ -16,6 +16,7 @@
     "css-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.3.0",
     "terser-webpack-plugin": "^5.2.4",
+    "ts-loader": "^9.2.5",
     "webpack-cli": "^4.8.0",
     "webpack-merge": "^5.8.0",
     "ws": "^8.2.2",
@@ -53,5 +54,9 @@
   "bugs": {
     "url": "https://github.com/eetann/notion-tweaks/issues"
   },
-  "homepage": "https://github.com/eetann/notion-tweaks#readme"
+  "homepage": "https://github.com/eetann/notion-tweaks#readme",
+  "dependencies": {
+    "@notionhq/client": "^0.3.2",
+    "dotenv": "^10.0.0"
+  }
 }
