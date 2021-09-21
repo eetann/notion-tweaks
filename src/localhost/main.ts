@@ -5,9 +5,18 @@ const notion = new Client({
   auth: process.env.NOTION_KEY,
 });
 // const daily_database_id: string = process.env.DAILY_DATABASE_ID;
-async function addItem(text) {
-  console.log(text);
-  const listUsersResponse = await notion.users.list()
-  console.log(listUsersResponse)
+async function getTodayPage() {
+  let date = new Date();
+  let dateStr: string = date.toISOString().slice(0, 10)
+  const response = await notion.databases.query({
+    database_id: process.env.DAILY_DATABASE_ID,
+    filter: {
+      property: 'Date',
+      date: {
+        equals: dateStr,
+      },
+    },
+  });
+  console.log(response);
 }
-addItem("hoge");
+getTodayPage();
