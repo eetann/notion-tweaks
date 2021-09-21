@@ -25,7 +25,13 @@ module.exports = {
     alias: {
       "@": path.resolve(__dirname, './src')
     },
-    extensions: ['.js']
+    extensions: ['.js'],
+    fallback: {
+      process: false,
+      fs: false,
+      os: false,
+      path: false,
+    },
   },
   module: {
     rules: [

@@ -6,7 +6,7 @@
   "author": "eetann",
   "content_scripts": [
     {
-      "matches": ["https://www.notion.so/*"],
+      "matches": ["https://www.notion.so/*", "*://localhost/*"],
       "css": ["content.css"],
       "js": ["content.js"]
     }
