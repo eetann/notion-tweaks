@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'ldist/'),
   },
+  target: "node",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, './src')
