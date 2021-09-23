@@ -10,8 +10,6 @@ sock.addEventListener("message", e => {
   }
 })
 
-// chrome.runtime will not close in 30 seconds after extension reload
-// because when Service Worker is disabling, this script will be reloaded
 chrome.runtime.onMessage.addListener((msg) => {
   if (msg == 'restart') {
     chrome.runtime.reload();
