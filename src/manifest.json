@@ -4,9 +4,13 @@
   "version": "1.0.0",
   "description": "For Notion",
   "author": "eetann",
+  "host_permissions": [
+    "https://script.google.com/*",
+    "https://api.notion.com/*"
+  ],
   "content_scripts": [
     {
-      "matches": ["https://www.notion.so/*", "*://localhost/*"],
+      "matches": ["https://www.notion.so/*"],
       "css": ["content.css"],
       "js": ["content.js"]
     }

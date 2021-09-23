@@ -4,13 +4,8 @@
   "description": "This is a Chrome extension for notion",
   "private": true,
   "scripts": {
-    "dev": "run-p dev:*",
-    "dev:extension": "NODE_ENV=development webpack --config=webpack.dev.js --mode=development",
-    "dev:localhost": "NODE_ENV=development webpack --config=lwebpack.dev.js --mode=development",
-    "build": "run-p dev:*",
-    "build:extension": "webpack --config webpack.prod.js",
-    "build:localhost": "webpack --config lwebpack.prod.js",
-    "main": "node -r dotenv/config ./ldist/localhost.js"
+    "dev": "NODE_ENV=development webpack --config=webpack.dev.js --mode=development",
+    "build": "webpack --config webpack.prod.js"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
@@ -20,7 +15,6 @@
     "copy-webpack-plugin": "^9.0.1",
     "css-loader": "^6.2.0",
     "mini-css-extract-plugin": "^2.3.0",
-    "npm-run-all": "^4.1.5",
     "terser-webpack-plugin": "^5.2.4",
     "ts-loader": "^9.2.5",
     "webpack-cli": "^4.8.0",
@@ -63,6 +57,6 @@
   "homepage": "https://github.com/eetann/notion-tweaks#readme",
   "dependencies": {
     "@notionhq/client": "^0.3.2",
-    "dotenv": "^10.0.0"
+    "@types/chrome": "^0.0.157"
   }
 }
