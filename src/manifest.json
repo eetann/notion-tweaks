@@ -8,6 +8,15 @@
     "https://script.google.com/*",
     "https://api.notion.com/*"
   ],
+  "commands": {
+    "today": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Open today page."
+    }
+  },
   "content_scripts": [
     {
       "matches": ["https://www.notion.so/*"],
