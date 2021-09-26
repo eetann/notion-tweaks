@@ -5,8 +5,8 @@
   "description": "For Notion",
   "author": "eetann",
   "host_permissions": [
-    "https://script.google.com/*",
-    "https://api.notion.com/*"
+    "https://script.google.com/",
+    "https://script.googleusercontent.com/"
   ],
   "commands": {
     "today": {
