@@ -8,15 +8,20 @@
     "https://script.google.com/",
     "https://script.googleusercontent.com/"
   ],
+  "permissions": [
+    "tabs"
+  ],
   "commands": {
     "today": {
       "suggested_key": {
         "default": "Ctrl+Shift+Y",
         "mac": "Command+Shift+Y"
       },
+      "global": true,
       "description": "Open today page."
     }
   },
+  "options_page": "options.html",
   "content_scripts": [
     {
       "matches": ["https://www.notion.so/*"],
