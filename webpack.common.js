@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require("copy-webpack-plugin");
 const path = require('path');
 
@@ -50,6 +51,11 @@ module.exports = {
       patterns: [
         {from: "src/manifest.json"},
       ],
+    }),
+    new HtmlWebpackPlugin({
+      template: 'public/options.html',
+      filename: 'options.html',
+      chunks: ['chunk', 'options']
     }),
     new MiniCssExtractPlugin(),
   ]
