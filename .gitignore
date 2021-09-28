@@ -1,5 +1,7 @@
 node_modules
 /dist
 /ldist
+ldist.crx
+ldist.pem
 .env
 env/
