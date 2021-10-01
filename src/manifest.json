@@ -9,7 +9,8 @@
     "https://script.googleusercontent.com/"
   ],
   "permissions": [
-    "tabs"
+    "tabs",
+    "storage"
   ],
   "commands": {
     "today": {

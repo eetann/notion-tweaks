@@ -13,14 +13,18 @@ function init() {
 function doPost(e) {
   const params = JSON.parse(e.postData.getDataAsString());
   const command = params.name;
-  let res = {};
-  if (command == "databases_query") {
-    res = postNotion("databases/" + params.database_id + "/query", params.data);
+  let res;
+  if (command == "query_database") {
+    res = postNotion("databases/" + params.targetId + "/query", params.data);
+  } else if (command == "update_database") {
+    res = postNotion("databases/" + params.targetId, params.data);
+  } else if (command == "create_page") {
+    res = postNotion("pages", params.data);
   }
 
   const output = ContentService.createTextOutput();
   output.setMimeType(ContentService.MimeType.JSON);
-  output.setContent(JSON.stringify(res));
+  output.setContent(res);
   return output;
 }
 
@@ -30,7 +34,7 @@ function postNotion(endpoint, payload) {
   const headers = {
     "Authorization": "Bearer " + notionApiKey,
     "Content-Type": "application/json",
-    "Notion-Version": "2021-05-13"
+    "Notion-Version": "2021-08-16"
   };
 
   const res = UrlFetchApp.fetch(api, {
@@ -40,6 +44,5 @@ function postNotion(endpoint, payload) {
   }
   );
 
-  const json = JSON.parse(res.getContentText());
-  return json;
+  return res.getContentText();
 }

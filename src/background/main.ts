@@ -1,41 +1,82 @@
+const gasUrl: string = ""
+const database_id: string = ""
+
 interface TodayData {
   date: string,
   url: string,
 }
 
-async function getTodayPageViaGAS(dateStr: string) {
-  const command = {
-    name: "databases_query",
-    database_id: "",
-    data: {
-      filter: {
-        property: 'Date',
-        date: {
-          equals: dateStr,
-        },
-      },
-    }
-  };
-  const gasUrl = "";
-
+async function apiViaGAS(command: any) {
   const res: Response = await fetch(gasUrl, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(command),
   });
   if (!res.ok) {
     console.log("error" + res.status);
   }
-  const resJson = await res.json();
+  return await res.json();
+}
+
+async function createNewTodayPage(dateStr: string) {
+  const command = {
+    name: "create_page",
+    data: {
+      parent: {
+        database_id: database_id
+      },
+      properties: {
+        Name: {
+          title: [
+            {
+              mention: {
+                type: "date",
+                date: {
+                  start: dateStr,
+                  end: null,
+                }
+              }
+            }
+          ],
+        }
+      }
+    }
+  }
+  const resJson = await apiViaGAS(command);
+  const url: string = resJson.url;
+  return url;
+}
+
+async function getTodayPageViaGAS(dateStr: string) {
+  const command = {
+    name: "query_database",
+    targetId: database_id,
+    data: {
+      filter: {
+        property: "Date",
+        date: {
+          equals: dateStr,
+        },
+      },
+    }
+  };
+  let todayPageUrl: string = "";
+
+  const resJson = await apiViaGAS(command);
   const api_result: Array<any> = resJson.results;
   if (api_result.length != 1) {
-    console.log("ページが作成されていないか，2つ以上あります");
-    return;
+    if (api_result.length == 0) {
+      todayPageUrl = await createNewTodayPage(dateStr);
+    } else {
+      console.log("2つ以上あります");
+      return "";
+    }
+  } else {
+    todayPageUrl = api_result[0].url;
   }
-  const todayPageUrl: string = api_result[0].url;
   const todayData: TodayData = {date: dateStr, url: todayPageUrl};
 
   chrome.storage.local.set({
@@ -48,22 +89,24 @@ async function getTodayPage() {
   const date = new Date();
   // const month: Number = date.getMonth() + 1;
   // const day: Number = date.getDay();
-  const dateStr: string = date.toISOString().slice(0, 10)
-  let todayPageUrl: string = "";
-  chrome.storage.local.get("today", (result) => {
-    if (typeof result.today !== "undefined") {
-      const todayData: TodayData = JSON.parse(result.today);
+  const dateStr: string = date.toISOString().slice(0, 10);
+  chrome.storage.local.get(["today"], async (result: any) => {
+    const todayData: TodayData = JSON.parse(result.today);
+    if ((typeof todayData !== "undefined") && (todayData.url != "")) {
       if (todayData.date == dateStr) {
-        todayPageUrl = todayData.url;
+        chrome.tabs.create({
+          url: todayData.url,
+        });
+        return;
       }
     }
-  });
-  if (todayPageUrl == "") {
-    todayPageUrl = await getTodayPageViaGAS(dateStr);
-  }
-
-  chrome.tabs.create({
-    url: todayPageUrl,
+    const todayPageUrl = await getTodayPageViaGAS(dateStr);
+    if (todayPageUrl == "") {
+      return;
+    }
+    chrome.tabs.create({
+      url: todayPageUrl,
+    });
   });
 }
 
