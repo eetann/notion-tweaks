@@ -27,7 +27,12 @@ async function createNewTodayPage(dateStr: string) {
     data: {
       parent: { database_id: database_id },
       properties: {
-        Name: { title: [ { text: { content: dateStr } } ], }
+        Name: { title: [ { text: { content: dateStr } } ], },
+        Date: {
+          date: {
+            start: dateStr,
+          }
+        },
       },
       children: [
         {
