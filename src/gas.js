@@ -6,7 +6,7 @@ function init() {
   // TODO: Set your API key and ID
   // TODO: Run this function
   scriptProperties.setProperties({
-    "NOTINO_API_KEY": "",
+    "NOTION_API_KEY": "",
   });
 }
 
@@ -29,7 +29,7 @@ function doPost(e) {
 }
 
 function postNotion(endpoint, payload) {
-  const notionApiKey = scriptProperties.getProperty("NOTINO_API_KEY");
+  const notionApiKey = scriptProperties.getProperty("NOTION_API_KEY");
   const api = "https://api.notion.com/v1/" + endpoint;
   const headers = {
     "Authorization": "Bearer " + notionApiKey,
