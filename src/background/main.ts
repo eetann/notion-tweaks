@@ -25,26 +25,32 @@ async function createNewTodayPage(dateStr: string) {
   const command = {
     name: "create_page",
     data: {
-      parent: {
-        database_id: database_id
-      },
+      parent: { database_id: database_id },
       properties: {
-        Name: {
-          title: [
-            {
-              mention: {
-                type: "date",
-                date: {
-                  start: dateStr,
-                  end: null,
-                }
-              }
-            }
-          ],
-        }
-      }
+        Name: { title: [ { text: { content: dateStr } } ], }
+      },
+      children: [
+        {
+          object: "block",
+          type: "heading_1",
+          heading_1: {
+            text: [
+              { type: "text", text: { content: "🐣TODO" } }
+            ]
+          },
+        },
+        {
+          object: "block",
+          type: "heading_1",
+          heading_1: {
+            text: [
+              { type: "text", text: { content: "😼LOG" } }
+            ]
+          },
+        },
+      ]
     }
-  }
+  };
   const resJson = await apiViaGAS(command);
   const url: string = resJson.url;
   return url;
@@ -87,8 +93,6 @@ async function getTodayPageViaGAS(dateStr: string) {
 
 async function getTodayPage() {
   const date = new Date();
-  // const month: Number = date.getMonth() + 1;
-  // const day: Number = date.getDay();
   const dateStr: string = date.toISOString().slice(0, 10);
   chrome.storage.local.get(["today"], async (result: any) => {
     const todayData: TodayData = JSON.parse(result.today);
