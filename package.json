@@ -10,6 +10,10 @@
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@types/react": "^17.0.27",
+    "@types/react-dom": "^17.0.9",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^9.0.1",
@@ -57,7 +61,10 @@
   },
   "homepage": "https://github.com/eetann/notion-tweaks#readme",
   "dependencies": {
+    "@mui/material": "^5.0.2",
     "@notionhq/client": "^0.3.2",
-    "@types/chrome": "^0.0.157"
+    "@types/chrome": "^0.0.157",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   }
 }

@@ -3,6 +3,9 @@
     "sourceMap": true,
     "target": "ES5",
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "jsx": "react-jsx",
     "module": "ES2015"
   }
 }

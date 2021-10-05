@@ -8,7 +8,7 @@ const path = require('path');
 module.exports = {
   entry: {
     content: "./src/content-scripts/main.ts",
-    options: "./src/options/main.ts",
+    options: "./src/options/main.tsx",
     background: "./src/background/main.ts"
   },
   output: {
@@ -26,7 +26,7 @@ module.exports = {
     alias: {
       "@": path.resolve(__dirname, './src')
     },
-    extensions: ['.js'],
+    extensions: [".ts", ".tsx", ".js"],
     fallback: {
       process: false,
       fs: false,
