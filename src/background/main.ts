@@ -25,9 +25,9 @@ async function createNewTodayPage(dateStr: string) {
   const command = {
     name: "create_page",
     data: {
-      parent: { database_id: database_id },
+      parent: {database_id: database_id},
       properties: {
-        Name: { title: [ { text: { content: dateStr } } ], },
+        Name: {title: [{text: {content: dateStr}}], },
         Date: {
           date: {
             start: dateStr,
@@ -40,7 +40,7 @@ async function createNewTodayPage(dateStr: string) {
           type: "heading_1",
           heading_1: {
             text: [
-              { type: "text", text: { content: "🐣TODO" } }
+              {type: "text", text: {content: "🐣TODO"}}
             ]
           },
         },
@@ -49,7 +49,7 @@ async function createNewTodayPage(dateStr: string) {
           type: "heading_1",
           heading_1: {
             text: [
-              { type: "text", text: { content: "😼LOG" } }
+              {type: "text", text: {content: "😼LOG"}}
             ]
           },
         },
@@ -77,9 +77,10 @@ async function getTodayPageViaGAS(dateStr: string) {
   let todayPageUrl: string = "";
 
   const resJson = await apiViaGAS(command);
+  console.log(resJson);
   const api_result: Array<any> = resJson.results;
-  if (api_result.length != 1) {
-    if (api_result.length == 0) {
+  if (api_result.length !== 1) {
+    if (api_result.length === 0) {
       todayPageUrl = await createNewTodayPage(dateStr);
     } else {
       console.log("2つ以上あります");
@@ -100,9 +101,9 @@ async function getTodayPage() {
   const date = new Date();
   const dateStr: string = date.toISOString().slice(0, 10);
   chrome.storage.local.get(["today"], async (result: any) => {
-    const todayData: TodayData = JSON.parse(result.today);
-    if ((typeof todayData !== "undefined") && (todayData.url != "")) {
-      if (todayData.date == dateStr) {
+    if (typeof result.today !== "undefined") {
+      const todayData: TodayData = JSON.parse(result.today);
+      if ((todayData.url !== "") && (todayData.date === dateStr)) {
         chrome.tabs.create({
           url: todayData.url,
         });
@@ -110,7 +111,7 @@ async function getTodayPage() {
       }
     }
     const todayPageUrl = await getTodayPageViaGAS(dateStr);
-    if (todayPageUrl == "") {
+    if (todayPageUrl === "") {
       return;
     }
     chrome.tabs.create({
@@ -120,7 +121,7 @@ async function getTodayPage() {
 }
 
 chrome.commands.onCommand.addListener((command: string) => {
-  if (command == "today") {
+  if (command === "today") {
     getTodayPage();
     console.log("Called Got Today Page");
   }
