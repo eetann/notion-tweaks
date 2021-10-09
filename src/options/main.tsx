@@ -3,8 +3,8 @@
 import * as React from "react";
 import ReactDOM from 'react-dom';
 import {useForm, Controller} from "react-hook-form";
-import {TextField, Button, Grid} from '@mui/material';
-import {setStorage, clearStorage} from "../lib/storage"
+import {TextField, Button, Box} from '@mui/material';
+import {getStorage, setStorage} from "../lib/storage"
 
 
 function onSubmit(data: any) {
@@ -16,48 +16,52 @@ function onSubmit(data: any) {
   })();
 }
 
-function clearButton() {
-  (async () => {
-    await clearStorage();
-  })();
+const styles = {
+  form: {
+    width: "640px"
+  },
 }
 
 function App() {
-  const {control, handleSubmit} = useForm();
+  const {control, handleSubmit, setValue, formState: {isSubmitSuccessful}} = useForm();
+  (async () => {
+    setValue("gasUrl", await getStorage("gasUrl"));
+    setValue("notionDailyId", await getStorage("notionDailyId"));
+    setValue("notionZ10nId", await getStorage("notionZ10nId"));
+  })();
   return (
-    <Grid container>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="gasUrl"
-          control={control}
-          defaultValue=""
-          render={({field}) => <Grid item>
-            <TextField id="gas_url" label="GAS URL" variant="standard" margin="normal" {...field} />
-          </Grid>
-          }
-        />
-        <Controller
-          name="notionDailyId"
-          control={control}
-          defaultValue=""
-          render={({field}) => <Grid item>
-            <TextField id="notion_daily_id" label="Daily database ID" variant="standard" margin="normal" {...field} />
-          </Grid>
-          }
-        />
-        <Controller
-          name="notionZ10nId"
-          control={control}
-          defaultValue=""
-          render={({field}) => <Grid item>
-            <TextField id="notion_z10n_id" label="z10n database ID" variant="standard" margin="normal" {...field} />
-          </Grid>
-          }
-        />
-        <Button type="submit" variant="contained">Resister</Button>
-      </form>
-      <Button variant="contained" onClick={clearButton}>Clear</Button>
-    </Grid>
+    <Box sx={{m: 2}}>
+      <Box sx={{'& button': {my: 2}}}>
+        <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+          <Controller
+            name="gasUrl"
+            control={control}
+            defaultValue=""
+            render={({field}) =>
+              <TextField id="gas_url" label="GAS URL" variant="standard" margin="normal" fullWidth {...field} />
+            }
+          />
+          <Controller
+            name="notionDailyId"
+            control={control}
+            defaultValue=""
+            render={({field}) =>
+              <TextField id="notion_daily_id" label="Daily database ID" variant="standard" margin="normal" fullWidth {...field} />
+            }
+          />
+          <Controller
+            name="notionZ10nId"
+            control={control}
+            defaultValue=""
+            render={({field}) =>
+              <TextField id="notion_z10n_id" label="z10n database ID" variant="standard" margin="normal" fullWidth {...field} />
+            }
+          />
+          <Button type="submit" variant="contained">Resister</Button>
+        </form>
+        {isSubmitSuccessful && <p>Resistered!</p>}
+      </Box>
+    </Box>
   );
 }
 
