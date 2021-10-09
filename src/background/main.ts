@@ -1,5 +1,4 @@
-const gasUrl: string = ""
-const database_id: string = ""
+import {getStorage, setStorage} from "../lib/storage"
 
 interface TodayData {
   date: string,
@@ -7,6 +6,7 @@ interface TodayData {
 }
 
 async function apiViaGAS(command: any) {
+  const gasUrl: string = (await getStorage("gasUrl") as string);
   const res: Response = await fetch(gasUrl, {
     method: "POST",
     headers: {
@@ -22,10 +22,11 @@ async function apiViaGAS(command: any) {
 }
 
 async function createNewTodayPage(dateStr: string) {
+  const notionDailyId: string = (await getStorage("notionDailyId") as string);
   const command = {
     name: "create_page",
     data: {
-      parent: {database_id: database_id},
+      parent: {database_id: notionDailyId},
       properties: {
         Name: {title: [{text: {content: dateStr}}], },
         Date: {
@@ -62,9 +63,10 @@ async function createNewTodayPage(dateStr: string) {
 }
 
 async function getTodayPageViaGAS(dateStr: string) {
+  const notionDailyId: string = (await getStorage("notionDailyId") as string);
   const command = {
     name: "query_database",
-    targetId: database_id,
+    targetId: notionDailyId,
     data: {
       filter: {
         property: "Date",
@@ -91,33 +93,30 @@ async function getTodayPageViaGAS(dateStr: string) {
   }
   const todayData: TodayData = {date: dateStr, url: todayPageUrl};
 
-  chrome.storage.local.set({
-    today: JSON.stringify(todayData),
-  });
+  await setStorage("today", todayData);
   return todayPageUrl;
 }
 
 async function getTodayPage() {
   const date = new Date();
   const dateStr: string = date.toISOString().slice(0, 10);
-  chrome.storage.local.get(["today"], async (result: any) => {
-    if (typeof result.today !== "undefined") {
-      const todayData: TodayData = JSON.parse(result.today);
-      if ((todayData.url !== "") && (todayData.date === dateStr)) {
-        chrome.tabs.create({
-          url: todayData.url,
-        });
-        return;
-      }
-    }
-    const todayPageUrl = await getTodayPageViaGAS(dateStr);
-    if (todayPageUrl === "") {
+  const todayData = await getStorage("today");
+  if (todayData !== null) {
+    if ((todayData["url"] !== "") && (todayData["date"] === dateStr)) {
+      chrome.tabs.create({
+        url: todayData["url"],
+      });
       return;
     }
-    chrome.tabs.create({
-      url: todayPageUrl,
-    });
+  }
+  const todayPageUrl = await getTodayPageViaGAS(dateStr);
+  if (todayPageUrl === "") {
+    return;
+  }
+  chrome.tabs.create({
+    url: todayPageUrl,
   });
+  return;
 }
 
 chrome.commands.onCommand.addListener((command: string) => {
