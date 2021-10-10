@@ -5,14 +5,15 @@ import ReactDOM from 'react-dom';
 import {useForm, Controller} from "react-hook-form";
 import {TextField, Button, Box} from '@mui/material';
 import {getStorage, setStorage} from "../lib/storage"
+import toast, {Toaster} from 'react-hot-toast';
 
 
 function onSubmit(data: any) {
-  console.log(data);
   (async () => {
     await setStorage("gasUrl", data["gasUrl"]);
     await setStorage("notionDailyId", data["notionDailyId"]);
     await setStorage("notionZ10nId", data["notionZ10nId"]);
+    toast.success('Saved!', {duration: 4000, position: 'top-right'});
   })();
 }
 
@@ -31,6 +32,7 @@ function App() {
   })();
   return (
     <Box sx={{m: 2}}>
+      <Toaster />
       <Box sx={{'& button': {my: 2}}}>
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
           <Controller
@@ -59,7 +61,6 @@ function App() {
           />
           <Button type="submit" variant="contained">Resister</Button>
         </form>
-        {isSubmitSuccessful && <p>Resistered!</p>}
       </Box>
     </Box>
   );
