@@ -5,9 +5,12 @@
       padding-right: 1em !important;
   }
 
-  .notion-frame > .notion-scroller > div:not(.notion-page-content)[style*="padding"] {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
+  .notion-frame > .notion-scroller > div:nth-child(2) > div:nth-child(1) div[style*="left: calc(96px"] {
+      padding-left: 2.5em !important;
+  }
+
+  .notion-frame > .notion-scroller > div:nth-child(2) > div:nth-child(1) div[style*="right: calc(96px"] {
+      padding-right: 1em !important;
   }
 
   div[data-block-id] {
