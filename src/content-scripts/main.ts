@@ -1,4 +1,5 @@
 import './index.css';
+import dayjs from 'dayjs';
 
 function dispatchPaste(target: Element, text: string) {
   const dataTransfer = new DataTransfer();
@@ -19,8 +20,7 @@ function writeTimeStamp() {
   if (focusElement.tagName === "body") {
     return;
   }
-  const now = new Date();
-  const nowStr = now.getHours().toString() + ":" + now.getMinutes().toString() + " ";
+  const nowStr = dayjs().format("HH:mm");
   dispatchPaste(focusElement, nowStr);
 }
 

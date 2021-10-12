@@ -27,7 +27,7 @@
     {
       "matches": ["https://www.notion.so/*"],
       "css": ["content.css"],
-      "js": ["content.js"]
+      "js": ["content.js", "chunk.js"]
     }
   ],
   "background": {"service_worker": "background.js"}

@@ -64,6 +64,7 @@
     "@mui/material": "^5.0.2",
     "@notionhq/client": "^0.3.2",
     "@types/chrome": "^0.0.157",
+    "dayjs": "^1.10.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.17.1",
