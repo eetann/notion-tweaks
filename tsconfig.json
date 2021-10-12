@@ -5,6 +5,7 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
     "jsx": "react-jsx",
     "module": "ES2015"
   }
