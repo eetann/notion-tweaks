@@ -14,7 +14,6 @@ function dispatchPaste(target: Element, text: string) {
   dataTransfer.clearData();
 }
 
-
 function writeTimeStamp() {
   const focusElement = document.activeElement;
   if (focusElement.tagName === "body") {
@@ -24,9 +23,19 @@ function writeTimeStamp() {
   dispatchPaste(focusElement, nowStr);
 }
 
-document.body.addEventListener("keyup", event => {
-  if (event.key === "q" && event.ctrlKey) {
+let prefixPressed: boolean = false;
+document.body.addEventListener("keydown", event => {
+  if (event.repeat) {
+    return;
+  }
+  if (event.ctrlKey && event.key === "q") {
+    prefixPressed = true;
+    setTimeout(() => prefixPressed = false, 1500);
+    event.preventDefault();
+  } else if (prefixPressed && event.key === "t") {
+    prefixPressed = false;
     writeTimeStamp();
+    event.preventDefault();
   }
 });
 
