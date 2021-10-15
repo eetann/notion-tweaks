@@ -36,7 +36,19 @@ document.body.addEventListener("keydown", event => {
     prefixPressed = false;
     writeTimeStamp();
     event.preventDefault();
+  } else if (prefixPressed && event.key === "c") {
+    prefixPressed = false;
+    closeEmojiNoResults(event);
+    event.preventDefault();
   }
 });
+
+function closeEmojiNoResults(event: KeyboardEvent) {
+  // not strict
+  // TODO: if "No results" is displayed, call this function
+  if ((event.target as HTMLElement).textContent.match(/(\/|:|；).{2,}/)) {
+    (event.target as HTMLElement).click();
+  }
+}
 
 console.log("Notion Tweaks!");
