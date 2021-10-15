@@ -22,11 +22,6 @@ div.notion-code-block > div {
   padding-bottom: 10px !important;
 }
 
-/* copy caption button */
-div.notion-code-block + div {
-  opacity: 1 !important;
-}
-
 /* language */
 div.notion-code-block + div + div {
   opacity: 1 !important;
