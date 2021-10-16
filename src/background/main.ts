@@ -119,9 +119,34 @@ async function getTodayPage() {
   return;
 }
 
+async function createNewZ10nPage(title: string) {
+  const notionZ10nId: string = (await getStorage("notionZ10nId") as string);
+  const command = {
+    name: "create_page",
+    data: {
+      parent: {database_id: notionZ10nId},
+      properties: {
+        Name: {title: [{text: {content: title}}], },
+      },
+    }
+  };
+  const resJson = await apiViaGAS(command);
+  const url: string = resJson.url;
+  return url;
+}
+
+
 chrome.commands.onCommand.addListener((command: string) => {
   if (command === "today") {
     getTodayPage();
     console.log("Called Got Today Page");
   }
+});
+
+chrome.runtime.onMessage.addListener(async (request, sender, callback) => {
+  if (request.message === "z10n") {
+    const url: string = await createNewZ10nPage(request.title);
+    callback(url);
+  }
+  return true;
 });

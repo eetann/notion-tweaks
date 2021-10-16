@@ -23,6 +23,14 @@ function writeTimeStamp() {
   dispatchPaste(focusElement, nowStr);
 }
 
+function writeUrl(url: string) {
+  const focusElement = document.activeElement;
+  if (focusElement.tagName === "body") {
+    return;
+  }
+  dispatchPaste(focusElement, url);
+}
+
 let prefixPressed: boolean = false;
 document.body.addEventListener("keydown", event => {
   if (event.repeat) {
@@ -40,6 +48,10 @@ document.body.addEventListener("keydown", event => {
     prefixPressed = false;
     closeEmojiNoResults(event);
     event.preventDefault();
+  } else if (prefixPressed && event.key === "z") {
+    prefixPressed = false;
+    callCreateNewZ10nPage(event);
+    event.preventDefault();
   }
 });
 
@@ -49,6 +61,23 @@ function closeEmojiNoResults(event: KeyboardEvent) {
   if ((event.target as HTMLElement).textContent.match(/(\/|:|；).{2,}/)) {
     (event.target as HTMLElement).click();
   }
+}
+
+function callCreateNewZ10nPage(event: KeyboardEvent) {
+  const selection: Selection = document.getSelection();
+  chrome.runtime.sendMessage({message: "z10n", title: selection.toString()}, (response) => {
+    const url: string = response;
+    const dataTransfer = new DataTransfer();
+    dataTransfer.setData('text/plain', selection.toString());
+    (event.target as HTMLElement).dispatchEvent(
+      new ClipboardEvent('cut', {
+        clipboardData: dataTransfer,
+        bubbles: true,
+        cancelable: true
+      })
+    );
+    writeUrl(url);
+  });
 }
 
 console.log("Notion Tweaks!");
