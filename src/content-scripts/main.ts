@@ -64,18 +64,22 @@ function closeEmojiNoResults(event: KeyboardEvent) {
 }
 
 function callCreateNewZ10nPage(event: KeyboardEvent) {
-  const selection: Selection = document.getSelection();
-  chrome.runtime.sendMessage({message: "z10n", title: selection.toString()}, (response) => {
+  const selectText: string = document.getSelection().toString();
+  chrome.runtime.sendMessage({message: "z10n", title: selectText}, (response) => {
+    if (selectText !== "") {
+      // cut select text
+      const dataTransfer = new DataTransfer();
+      dataTransfer.setData('text/plain', selectText);
+      (event.target as HTMLElement).dispatchEvent(
+        new ClipboardEvent('cut', {
+          clipboardData: dataTransfer,
+          bubbles: true,
+          cancelable: true
+        })
+      );
+    }
+    // paste url
     const url: string = response;
-    const dataTransfer = new DataTransfer();
-    dataTransfer.setData('text/plain', selection.toString());
-    (event.target as HTMLElement).dispatchEvent(
-      new ClipboardEvent('cut', {
-        clipboardData: dataTransfer,
-        bubbles: true,
-        cancelable: true
-      })
-    );
     writeUrl(url);
   });
 }
