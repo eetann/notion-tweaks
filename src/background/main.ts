@@ -6,7 +6,7 @@ interface TodayData {
 }
 
 async function apiViaGAS(command: any) {
-  const gasUrl: string = (await getStorage("gasUrl") as string);
+  const gasUrl: string = (await getStorage("gas-url") as string);
   const res: Response = await fetch(gasUrl, {
     method: "POST",
     headers: {
@@ -22,7 +22,7 @@ async function apiViaGAS(command: any) {
 }
 
 async function createNewTodayPage(dateStr: string) {
-  const notionDailyId: string = (await getStorage("notionDailyId") as string);
+  const notionDailyId: string = (await getStorage("notion-daily-id") as string);
   const command = {
     name: "create_page",
     data: {
@@ -63,7 +63,7 @@ async function createNewTodayPage(dateStr: string) {
 }
 
 async function getTodayPageViaGAS(dateStr: string) {
-  const notionDailyId: string = (await getStorage("notionDailyId") as string);
+  const notionDailyId: string = (await getStorage("notion-daily-id") as string);
   const command = {
     name: "query_database",
     targetId: notionDailyId,
@@ -120,7 +120,7 @@ async function getTodayPage() {
 }
 
 async function createNewZ10nPage(title: string) {
-  const notionZ10nId: string = (await getStorage("notionZ10nId") as string);
+  const notionZ10nId: string = (await getStorage("notion-z10n-id") as string);
   const command = {
     name: "create_page",
     data: {
