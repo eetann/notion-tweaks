@@ -6,7 +6,8 @@
   "author": "eetann",
   "host_permissions": [
     "https://script.google.com/",
-    "https://script.googleusercontent.com/"
+    "https://script.googleusercontent.com/",
+    "https://api.notion.com/"
   ],
   "permissions": [
     "tabs",
