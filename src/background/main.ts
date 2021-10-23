@@ -1,4 +1,5 @@
 import {getStorage, setStorage} from "../lib/storage"
+import {Client} from "@notionhq/client";
 
 interface TodayData {
   date: string,
@@ -7,6 +8,9 @@ interface TodayData {
 
 async function apiViaGAS(command: any) {
   const gasUrl: string = (await getStorage("gas-url") as string);
+  if (gasUrl === "") {
+    return {};
+  }
   const res: Response = await fetch(gasUrl, {
     method: "POST",
     headers: {
@@ -19,6 +23,40 @@ async function apiViaGAS(command: any) {
     console.log("error" + res.status);
   }
   return await res.json();
+}
+
+async function apiViaSDK(command: any) {
+  const notionAPI: string = (await getStorage("notion-api") as string);
+  if (notionAPI === "") {
+    return {};
+  }
+  const notion = new Client({
+    auth: notionAPI
+  });
+  if (command.name == "query_database") {
+    return await notion.databases.query({
+      database_id: command.targetId, filter: command.data.filter,
+    });
+  } else if (command.name === "update_database") {
+    return await notion.databases.update({
+      database_id: command.targetId, title: command.data.title,
+      properties: command.data.properties,
+    });
+  } else if (command.name === "create_page") {
+    return await notion.pages.create({
+      parent: command.data.parent,
+      properties: command.data.properties,
+      children: command.data.children,
+    });
+  }
+}
+
+async function runAPI(command: any) {
+  const selectAPI: string = (await getStorage("select-api") as string);
+  if (selectAPI === "gas-url") {
+    return await apiViaGAS(command);
+  }
+  return await apiViaSDK(command);
 }
 
 async function createNewTodayPage(dateStr: string) {
@@ -41,15 +79,6 @@ async function createNewTodayPage(dateStr: string) {
           type: "heading_1",
           heading_1: {
             text: [
-              {type: "text", text: {content: "🐣TODO"}}
-            ]
-          },
-        },
-        {
-          object: "block",
-          type: "heading_1",
-          heading_1: {
-            text: [
               {type: "text", text: {content: "😼LOG"}}
             ]
           },
@@ -57,12 +86,15 @@ async function createNewTodayPage(dateStr: string) {
       ]
     }
   };
-  const resJson = await apiViaGAS(command);
+  const resJson = await runAPI(command);
+  if (!Object.keys(resJson).length) {
+    return "";
+  }
   const url: string = resJson.url;
   return url;
 }
 
-async function getTodayPageViaGAS(dateStr: string) {
+async function getTodayPageViaAPI(dateStr: string) {
   const notionDailyId: string = (await getStorage("notion-daily-id") as string);
   const command = {
     name: "query_database",
@@ -78,7 +110,10 @@ async function getTodayPageViaGAS(dateStr: string) {
   };
   let todayPageUrl: string = "";
 
-  const resJson = await apiViaGAS(command);
+  const resJson = await runAPI(command);
+  if (!Object.keys(resJson).length) {
+    return "";
+  }
   console.log(resJson);
   const api_result: Array<any> = resJson.results;
   if (api_result.length !== 1) {
@@ -109,7 +144,7 @@ async function getTodayPage() {
       return;
     }
   }
-  const todayPageUrl = await getTodayPageViaGAS(dateStr);
+  const todayPageUrl = await getTodayPageViaAPI(dateStr);
   if (todayPageUrl === "") {
     return;
   }
@@ -130,7 +165,7 @@ async function createNewZ10nPage(title: string) {
       },
     }
   };
-  const resJson = await apiViaGAS(command);
+  const resJson = await runAPI(command);
   const url: string = resJson.url;
   return url;
 }
