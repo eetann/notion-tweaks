@@ -120,7 +120,7 @@ function App() {
               <TextField id="today-url" label="Today Page URL" variant="standard" margin="normal" fullWidth {...field} />
             }
           />
-          <Button type="submit" variant="contained">Resister</Button>
+          <Button type="submit" variant="contained">Update</Button>
         </form>
       </Box>
     </Box>
