@@ -31,30 +31,6 @@ function writeUrl(url: string) {
   dispatchPaste(focusElement, url);
 }
 
-let prefixPressed: boolean = false;
-document.body.addEventListener("keydown", event => {
-  if (event.repeat) {
-    return;
-  }
-  if (event.ctrlKey && event.key === "q") {
-    prefixPressed = true;
-    setTimeout(() => prefixPressed = false, 1500);
-    event.preventDefault();
-  } else if (prefixPressed && event.key === "t") {
-    prefixPressed = false;
-    writeTimeStamp();
-    event.preventDefault();
-  } else if (prefixPressed && event.key === "c") {
-    prefixPressed = false;
-    closeEmojiNoResults(event);
-    event.preventDefault();
-  } else if (prefixPressed && event.key === "z") {
-    prefixPressed = false;
-    callCreateNewZ10nPage(event);
-    event.preventDefault();
-  }
-});
-
 function closeEmojiNoResults(event: KeyboardEvent) {
   // not strict
   // TODO: if "No results" is displayed, call this function
@@ -83,5 +59,29 @@ function callCreateNewZ10nPage(event: KeyboardEvent) {
     writeUrl(url);
   });
 }
+
+let prefixPressed: boolean = false;
+document.body.addEventListener("keydown", event => {
+  if (event.repeat) {
+    return;
+  }
+  if (event.ctrlKey && event.key === "q") {
+    prefixPressed = true;
+    setTimeout(() => prefixPressed = false, 1500);
+    event.preventDefault();
+  } else if (prefixPressed && event.key === "t") {
+    prefixPressed = false;
+    writeTimeStamp();
+    event.preventDefault();
+  } else if (prefixPressed && event.key === "c") {
+    prefixPressed = false;
+    closeEmojiNoResults(event);
+    event.preventDefault();
+  } else if (prefixPressed && event.key === "z") {
+    prefixPressed = false;
+    callCreateNewZ10nPage(event);
+    event.preventDefault();
+  }
+});
 
 console.log("Notion Tweaks!");
