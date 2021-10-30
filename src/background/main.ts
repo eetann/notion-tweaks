@@ -133,6 +133,10 @@ async function getTodayPageViaAPI(dateStr: string) {
 }
 
 async function getTodayPage() {
+  const onTodayPage: boolean = (await getStorage("onTodayPage") as boolean) || false;
+  if (!onTodayPage) {
+    return;
+  }
   const date = new Date();
   const dateStr: string = date.toISOString().slice(0, 10);
   const todayData = await getStorage("today");
