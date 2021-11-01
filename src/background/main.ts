@@ -74,15 +74,15 @@ async function createNewTodayPage(dateStr: string) {
         },
       },
       children: [
-        {
-          object: "block",
-          type: "heading_1",
-          heading_1: {
-            text: [
-              {type: "text", text: {content: "😼LOG"}}
-            ]
-          },
-        },
+        // {
+        //   object: "block",
+        //   type: "heading_1",
+        //   heading_1: {
+        //     text: [
+        //       {type: "text", text: {content: "😼LOG"}}
+        //     ]
+        //   },
+        // },
       ]
     }
   };
