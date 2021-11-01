@@ -1,5 +1,7 @@
 import './index.css';
 import dayjs from 'dayjs';
+import {getStorage} from "../lib/storage"
+
 
 function dispatchPaste(target: Element, text: string) {
   const dataTransfer = new DataTransfer();
@@ -61,27 +63,53 @@ function callCreateNewZ10nPage(event: KeyboardEvent) {
 }
 
 let prefixPressed: boolean = false;
-document.body.addEventListener("keydown", event => {
+document.body.addEventListener("keydown", async (event) => {
   if (event.repeat) {
     return;
   }
   if (event.ctrlKey && event.key === "q") {
+    event.preventDefault();
     prefixPressed = true;
     setTimeout(() => prefixPressed = false, 1500);
-    event.preventDefault();
   } else if (prefixPressed && event.key === "t") {
+    event.preventDefault();
     prefixPressed = false;
+    const onTimeStamp: boolean = (await getStorage("onTimeStamp") as boolean) || false;
+    if (!onTimeStamp) {
+      return;
+    }
     writeTimeStamp();
-    event.preventDefault();
   } else if (prefixPressed && event.key === "c") {
+    event.preventDefault();
     prefixPressed = false;
+    const onCloseMenu: boolean = (await getStorage("onCloseMenu") as boolean) || false;
+    if (!onCloseMenu) {
+      return;
+    }
     closeEmojiNoResults(event);
-    event.preventDefault();
   } else if (prefixPressed && event.key === "z") {
-    prefixPressed = false;
-    callCreateNewZ10nPage(event);
     event.preventDefault();
+    prefixPressed = false;
+    const onCreateZ10n: boolean = (await getStorage("onCreateZ10n") as boolean) || false;
+    if (!onCreateZ10n) {
+      return;
+    }
+    callCreateNewZ10nPage(event);
   }
 });
+
+function applyCSS(name: string) {
+  (async () => {
+    const onFeature: boolean = (await getStorage(name) as boolean) || false;
+    if (!onFeature) {
+      return;
+    }
+    document.getElementById("notion-app").classList.toggle(name);
+  })();
+}
+
+applyCSS("narrow-page-width");
+applyCSS("narrow-code-block-bottom");
+applyCSS("show-code-block-language");
 
 console.log("Notion Tweaks!");

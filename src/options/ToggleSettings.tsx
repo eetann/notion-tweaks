@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Box, Switch, FormControlLabel} from '@mui/material';
+import {Box, Switch, FormControlLabel, Stack} from '@mui/material';
 import {getStorage, setStorage} from "../lib/storage"
 import toast, {Toaster} from 'react-hot-toast';
 
@@ -20,7 +20,6 @@ const MySwitch: React.VFC<Props> = (props) => {
       // 存在しない場合はオフ
       setChecked((await getStorage(props.name) as boolean) || false);
       setDisabled(false);
-      toast.success('Switch read!', {duration: 4000, position: 'top-right'});
     };
     get();
   }, []);
@@ -52,7 +51,15 @@ export const ToggleSettings: React.VFC = () => {
   return (
     <Box>
       <Toaster />
-      <MySwitch name="onTodayPage" label="Today's Page" />
+      <Stack>
+        <MySwitch name="onTodayPage" label="Today's Page" />
+        <MySwitch name="onTimeStamp" label="Time Stamp" />
+        <MySwitch name="onCloseMenu" label="Close menu" />
+        <MySwitch name="onCreateZ10n" label="Create Page of z10n database" />
+        <MySwitch name="narrow-page-width" label="Narrower Page Width" />
+        <MySwitch name="narrow-code-block-bottom" label="Narrower Code Block Bottom" />
+        <MySwitch name="show-code-block-language" label="Show Code Block Language" />
+      </Stack>
     </Box>
   );
 }
