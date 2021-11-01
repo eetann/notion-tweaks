@@ -30,6 +30,7 @@ Here are the details of the page that was created.
 + [`Share` a database with yout integration](https://developers.notion.com/docs)
 + `Select API` and `GAS URL or Notion API key`
 + Daily Database id
++ Turn on `Today's Page` the Settings page
 
 
 ## Create Page of a specific database quickly
@@ -47,6 +48,7 @@ I forget the spelling `Zettelkasten`, so I write z10n.
 + [`Share` a database with yout integration](https://developers.notion.com/docs)
 + `Select API` and `GAS URL or Notion API key`
 + z10n Database id
++ Turn on `Create Page of z10n database` the Settings page
 
 
 ## Enter the timestamp(HH:mm) quickly
@@ -54,7 +56,7 @@ If you type `Ctrl + q` + `t` in Notion page,
 timestamp will be inserted. Its format is `HH:mm`.  
 
 **require**
-Nothing.
++ Turn on `Time Stamp` the Settings page
 
 
 ## Close Slash command menu and Emoji menu
@@ -62,20 +64,20 @@ If you type `Ctrl + q` + `c` while Slach command or Emoji menu is displaying,
 the menu will be closed.  
 
 **require**
-Nothing.
++ Turn on `Close menu` the Settings page
 
 
 ## Narrow the margin at the bottom of Code Block
 This feature makes the margin at the bottom of Code Block narrower.  
 
 **require**
-Nothing.
++ Turn on `Narrower Code Block Bottom` the Settings page
 
 
 ## Always show the language of Code Block
 This feature makes the language of Code Block always visible.  
 
 **require**
-Nothing.
++ Turn on `Show Code Block Language` the Settings page
 
 
