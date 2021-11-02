@@ -32,7 +32,7 @@ Here are the details of the page that was created.
 + [`Share` a database with yout integration](https://developers.notion.com/docs)
 + `Select API` and `GAS URL or Notion API key`
 + Daily Database id
-+ Turn on `Today's Page` the Settings page
++ Turn on `Today's Page` in the Settings page
 
 
 ## Create Page of a specific database quickly
@@ -51,7 +51,7 @@ I forget the spelling `Zettelkasten`, so I write z10n.
 + [`Share` a database with yout integration](https://developers.notion.com/docs)
 + `Select API` and `GAS URL or Notion API key`
 + z10n Database id
-+ Turn on `Create Page of z10n database` the Settings page
++ Turn on `Create Page of z10n database` in the Settings page
 + If you have already opened a Notion page, reload it
 
 
@@ -62,7 +62,7 @@ timestamp will be inserted. Its format is `HH:mm`.
 ![onTimeStamp](./imgs/onTimeStamp.gif)
 
 **require**
-+ Turn on `Time Stamp` the Settings page
++ Turn on `Time Stamp` in the Settings page
 + If you have already opened a Notion page, reload it
 
 
@@ -73,7 +73,7 @@ the menu will be closed.
 ![onCloseMenu](./imgs/onCloseMenu.gif)
 
 **require**
-+ Turn on `Close menu` the Settings page
++ Turn on `Close menu` in the Settings page
 + If you have already opened a Notion page, reload it
 
 
@@ -83,7 +83,7 @@ This feature makes the margin at the bottom of Code Block narrower.
 ![NarrowerCodeBlockBottom](./imgs/NarrowerCodeBlockBottom.gif)
 
 **require**
-+ Turn on `Narrower Code Block Bottom` the Settings page
++ Turn on `Narrower Code Block Bottom` in the Settings page
 + If you have already opened a Notion page, reload it
 
 
@@ -93,6 +93,6 @@ This feature makes the language of Code Block always visible.
 ![ShowCodeBlockLanguage](./imgs/ShowCodeBlockLanguage.gif)
 
 **require**
-+ Turn on `Show Code Block Language` the Settings page
++ Turn on `Show Code Block Language` in the Settings page
 + If you have already opened a Notion page, reload it
 
