@@ -3,8 +3,9 @@ const notionPrefix = "https://www.notion.so/";
 
 
 function init() {
-  // TODO: Set your API key and ID
+  // TODO: Set your API key
   // TODO: Run this function
+  // TODO: Delete this function from this code
   scriptProperties.setProperties({
     "NOTION_API_KEY": "",
   });
