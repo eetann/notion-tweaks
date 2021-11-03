@@ -5,16 +5,25 @@
       padding-right: 1em !important;
     }
 
+    .narrow-page-width .notion-overlay-container .notion-scroller div[style*="left: calc(126px"],
     .narrow-page-width .notion-frame > .notion-scroller > div:nth-child(2) > div:nth-child(1) div[style*="left: calc(96px"] {
       padding-left: 2.5em !important;
     }
 
+    .narrow-page-width .notion-overlay-container .notion-scroller div[style*="right: calc(126px"],
     .narrow-page-width .notion-frame > .notion-scroller > div:nth-child(2) > div:nth-child(1) div[style*="right: calc(96px"] {
       padding-right: 1em !important;
     }
 
     .narrow-page-width div[data-block-id] {
       max-width: unset !important;
+    }
+
+    .narrow-page-width .notion-peek-renderer > div:nth-child(2) {
+      top: 36px !important;
+      left: 36px !important;
+      right: 36px !important;
+      height: calc(100% - 72px) !important;
     }
 }
 
