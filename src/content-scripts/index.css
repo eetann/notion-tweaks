@@ -1,24 +1,23 @@
-.narrow-page-width {
-  @media (max-width: 850px) {
-    .notion-frame > .notion-scroller > div:not(.notion-page-content) > div,
-    .notion-page-content {
+@media (max-width: 850px) {
+    .narrow-page-width .notion-frame > .notion-scroller > div:not(.notion-page-content) > div,
+    .narrow-page-width .notion-page-content {
       padding-left: 2.5em !important;
       padding-right: 1em !important;
     }
 
-    .notion-frame > .notion-scroller > div:nth-child(2) > div:nth-child(1) div[style*="left: calc(96px"] {
+    .narrow-page-width .notion-frame > .notion-scroller > div:nth-child(2) > div:nth-child(1) div[style*="left: calc(96px"] {
       padding-left: 2.5em !important;
     }
 
-    .notion-frame > .notion-scroller > div:nth-child(2) > div:nth-child(1) div[style*="right: calc(96px"] {
+    .narrow-page-width .notion-frame > .notion-scroller > div:nth-child(2) > div:nth-child(1) div[style*="right: calc(96px"] {
       padding-right: 1em !important;
     }
 
-    div[data-block-id] {
+    .narrow-page-width div[data-block-id] {
       max-width: unset !important;
     }
-  }
 }
+
 
 .narrow-code-block-bottom div.notion-code-block > div {
   padding-bottom: 10px !important;
