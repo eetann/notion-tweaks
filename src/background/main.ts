@@ -182,10 +182,9 @@ chrome.commands.onCommand.addListener((command: string) => {
   }
 });
 
-chrome.runtime.onMessage.addListener(async (request, sender, callback) => {
+chrome.runtime.onMessage.addListener((request, sender, callback) => {
   if (request.message === "z10n") {
-    const url: string = await createNewZ10nPage(request.title);
-    callback(url);
+    createNewZ10nPage(request.title).then(url => callback(url));
   }
   return true;
 });
