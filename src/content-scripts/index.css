@@ -1,17 +1,7 @@
 @media (max-width: 850px) {
-    .narrow-page-width .notion-frame > .notion-scroller > div:not(.notion-page-content) > div,
+    /* Page content */
     .narrow-page-width .notion-page-content {
-      padding-left: 2.5em !important;
-      padding-right: 1em !important;
-    }
-
-    .narrow-page-width .notion-overlay-container .notion-scroller div[style*="left: calc(126px"],
-    .narrow-page-width .notion-frame > .notion-scroller > div:nth-child(2) > div:nth-child(1) div[style*="left: calc(96px"] {
-      padding-left: 2.5em !important;
-    }
-
-    .narrow-page-width .notion-overlay-container .notion-scroller div[style*="right: calc(126px"],
-    .narrow-page-width .notion-frame > .notion-scroller > div:nth-child(2) > div:nth-child(1) div[style*="right: calc(96px"] {
+      padding-left: 1.5em !important;
       padding-right: 1em !important;
     }
 
@@ -19,23 +9,44 @@
       max-width: unset !important;
     }
 
+    .narrow-page-width .notion-frame > .notion-scroller > div:not(.notion-page-content) > div:nth-child(1),
+    .narrow-page-width .notion-overlay-container .notion-scroller div[style*="left: calc(126px"],
+    .narrow-page-width .notion-frame > .notion-scroller div[style*="left: calc(96px"] {
+      padding-left: 1.5em !important;
+    }
+
+    .narrow-page-width .notion-overlay-container .notion-scroller div[style*="right: calc(126px"],
+    .narrow-page-width .notion-frame > .notion-scroller div[style*="right: calc(96px"] {
+      padding-right: 1.5em !important;
+    }
+
+    /* Page preview */
     .narrow-page-width .notion-peek-renderer > div:nth-child(2) {
       top: 36px !important;
-      left: 36px !important;
-      right: 36px !important;
+      left: 0 !important;
+      right: 0 !important;
       height: calc(100% - 72px) !important;
     }
 
-    /* .notion-timeline-view is too complicated */
-    .notion-frame > .notion-scroller.vertical.horizontal > div:nth-child(2),
-    .notion-board-view,
-    .notion-table-view,
-    .notion-calendar-view {
+    .narrow-page-width .notion-peek-renderer > div:nth-child(2) > .notion-scroller.vertical {
+      padding-left: 1em !important;
+    }
+
+    /* Database Page */
+    /* tool bar under the title */
+    .narrow-page-width .notion-frame > .notion-scroller.vertical.horizontal > div[style*="left: 96px"],
+    .narrow-page-width .notion-board-view,
+    .narrow-page-width .notion-calendar-view,
+    .narrow-page-width .notion-gallery-view,
+    .narrow-page-width .notion-list-view,
+    .narrow-page-width .notion-table-view {
       padding-left: 1em !important;
       padding-right: 1em !important;
     }
+    /* .notion-timeline-view is too complicated */
 
-    .notion-sidebar[style*="translateX"] {
+    /* Sidebar */
+    .narrow-page-width .notion-sidebar[style*="translateX"] {
       display: none !important;
     }
 }
