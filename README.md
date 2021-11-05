@@ -79,11 +79,11 @@ the menu will be closed.
 
 
 ### Narrow the page margins
-This feature makes the page margin narrower.
+This feature makes the page margin narrower **when page width is less than 850px**.
 
 ![Narrow the page margins](./imgs/narrow-page-margin-page.jpg)
 
-**Preview, too!**
+:thumbsup: **Preview, too!**
 
 ![Narrow the page preview margins](./imgs/narrow-page-margin-preview.jpg)
 
