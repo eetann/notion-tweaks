@@ -8,6 +8,7 @@ Chrome Extension to tweak Notion.
 + Create Page of a specific database quickly
 + Enter the timestamp(HH:mm) quickly
 + Close Slash command menu and Emoji menu
++ Narrow the page margins when page width is less than 850px
 + Narrow the margin at the bottom of Code Block
 + Always show the language of Code Block
 
@@ -74,6 +75,14 @@ the menu will be closed.
 
 **require**
 + Turn on `Close menu` in the Settings page
++ If you have already opened a Notion page, reload it
+
+
+### Narrow the page margins
+This feature makes the page margin narrower.
+
+**require**
++ Turn on `Narrow the page margins` in the Settings page
 + If you have already opened a Notion page, reload it
 
 

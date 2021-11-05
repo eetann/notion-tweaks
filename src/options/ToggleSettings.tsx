@@ -56,7 +56,7 @@ export const ToggleSettings: React.VFC = () => {
         <MySwitch name="onTimeStamp" label="Time Stamp" />
         <MySwitch name="onCloseMenu" label="Close menu" />
         <MySwitch name="onCreateZ10n" label="Create Page of z10n database" />
-        <MySwitch name="narrow-page-width" label="Narrower Page Width" />
+        <MySwitch name="narrow-page-margin" label="Narrow the page margins" />
         <MySwitch name="narrow-code-block-bottom" label="Narrower Code Block Bottom" />
         <MySwitch name="show-code-block-language" label="Show Code Block Language" />
       </Stack>

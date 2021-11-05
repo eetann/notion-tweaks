@@ -108,7 +108,7 @@ function applyCSS(name: string) {
   })();
 }
 
-applyCSS("narrow-page-width");
+applyCSS("narrow-page-margin");
 applyCSS("narrow-code-block-bottom");
 applyCSS("show-code-block-language");
 
