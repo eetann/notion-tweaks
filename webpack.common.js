@@ -50,6 +50,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {from: "src/manifest.json"},
+        {context: "public", from: "imgs/*"},
       ],
     }),
     new HtmlWebpackPlugin({

@@ -4,6 +4,10 @@
   "version": "1.0.0",
   "description": "For Notion",
   "author": "eetann",
+  "icons": {
+      "48":  "imgs/icon48.png",
+      "128": "imgs/icon128.png"
+  },
   "host_permissions": [
     "https://script.google.com/",
     "https://script.googleusercontent.com/",
