@@ -81,6 +81,12 @@ the menu will be closed.
 ### Narrow the page margins
 This feature makes the page margin narrower.
 
+![Narrow the page margins](./imgs/narrow-page-margin-page.jpg)
+
+**Preview, too!**
+
+![Narrow the page preview margins](./imgs/narrow-page-margin-preview.jpg)
+
 **require**
 + Turn on `Narrow the page margins` in the Settings page
 + If you have already opened a Notion page, reload it
@@ -89,7 +95,7 @@ This feature makes the page margin narrower.
 ### Narrow the margin at the bottom of Code Block
 This feature makes the margin at the bottom of Code Block narrower.  
 
-![NarrowerCodeBlockBottom](./imgs/NarrowerCodeBlockBottom.gif)
+![NarrowerCodeBlockBottom](./imgs/narrow-code-block-bottom.jpg)
 
 **require**
 + Turn on `Narrower Code Block Bottom` in the Settings page
