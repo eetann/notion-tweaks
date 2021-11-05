@@ -25,6 +25,19 @@
       right: 36px !important;
       height: calc(100% - 72px) !important;
     }
+
+    /* .notion-timeline-view is too complicated */
+    .notion-frame > .notion-scroller.vertical.horizontal > div:nth-child(2),
+    .notion-board-view,
+    .notion-table-view,
+    .notion-calendar-view {
+      padding-left: 1em !important;
+      padding-right: 1em !important;
+    }
+
+    .notion-sidebar[style*="translateX"] {
+      display: none !important;
+    }
 }
 
 
