@@ -29,18 +29,18 @@
     }
 
     .narrow-page-margin .notion-peek-renderer > div:nth-child(2) > .notion-scroller.vertical {
-      padding-left: 1em !important;
+      padding-left: 1.5em !important;
     }
 
     /* Database Page */
     /* tool bar under the title */
-    .narrow-page-margin .notion-frame > .notion-scroller.vertical.horizontal > div[style*="left: 96px"],
+    .narrow-page-margin .notion-frame > .notion-scroller.vertical.horizontal div[style*="left: 96px"],
     .narrow-page-margin .notion-board-view,
     .narrow-page-margin .notion-calendar-view,
     .narrow-page-margin .notion-gallery-view,
     .narrow-page-margin .notion-list-view,
     .narrow-page-margin .notion-table-view {
-      padding-left: 1em !important;
+      padding-left: 1.5em !important;
       padding-right: 1em !important;
     }
     /* .notion-timeline-view is too complicated */
