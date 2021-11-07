@@ -79,7 +79,9 @@ the menu will be closed.
 
 
 ### Narrow the page margins
-This feature makes the page margin narrower **when page width is less than 850px**.
+This feature makes the page margin narrower **when page width is less than 850px**.  
+This is useful for displaying windows side-by-side or in the Vivaldi web panel.
+
 
 ![Narrow the page margins](./imgs/narrow-page-margin-page.jpg)
 
