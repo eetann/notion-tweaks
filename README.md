@@ -1,6 +1,10 @@
 # Notion Tweaks
 Chrome Extension to tweak Notion.
 
+## Installation
+Chrome Web Store link is [Here](https://chrome.google.com/webstore/detail/notion-tweaks/fodemmhibeapiocbkojhfpbbiipojcof)
+
+<!-- 日本語の記事はこちら -->
 
 ## Features
 
