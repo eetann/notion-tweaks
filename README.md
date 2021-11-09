@@ -74,6 +74,7 @@ timestamp will be inserted. Its format is `HH:mm`.
 ### Close Slash command menu and Emoji menu
 If you type `Ctrl + q` + `c` while Slach command or Emoji menu is displaying,
 the menu will be closed.  
+Pressing the escape key to do the same thing, so we don't need this feature.  
 
 ![onCloseMenu](./imgs/onCloseMenu.gif)
 
