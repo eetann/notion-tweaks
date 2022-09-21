@@ -14,10 +14,7 @@
     "https://script.googleusercontent.com/",
     "https://api.notion.com/"
   ],
-  "permissions": [
-    "tabs",
-    "storage"
-  ],
+  "permissions": [ "storage" ],
   "commands": {
     "today": {
       "suggested_key": {
